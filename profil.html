@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Aplikasi Penjualan Barang</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 100px;
+        }
+
+        /* Navbar styling dari halaman Beranda */
+        .navbar {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            width: auto;
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            padding: 8px 15px !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #e116d0 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #e116d0;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        .nav-item.active .nav-link {
+            color: #e116d0 !important;
+        }
+
+        .nav-item.active .nav-link::after {
+            width: 70%;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white !important;
+            border-radius: 25px;
+            padding: 8px 25px !important;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(225, 22, 208, 0.3);
+        }
+
+        /* Form styling */
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus {
+            border-color: #e116d0;
+            box-shadow: 0 0 0 0.2rem rgba(225, 22, 208, 0.25);
+        }
+
+        /* Styling untuk header halaman transaksi */
+        .page-header.transaction-header {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            padding: 80px 0 60px;
+            margin-top: 80px;
+            margin-bottom: 50px;
+            position: relative;
+            color: white;
+        }
+
+        .transaction-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #3B0764;
+            text-shadow: none;
+            line-height: 1.2;
+        }
+
+        .transaction-header .lead {
+            font-size: 1.2rem;
+            color: #3B0764;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .page-header.transaction-header {
+                padding: 70px 0 50px;
+                margin-top: 70px;
+            }
+
+            .transaction-header h1 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .transaction-header h1 {
+                font-size: 2rem;
+            }
+
+            .transaction-header .lead {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar tetap sama -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/logo.png" alt="Logo" height="60">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="transaksi.html">Transaksi</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="profil.html">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Header section dengan gradient -->
+    <div class="page-header transaction-header">
+        <div class="container text-center">
+            <h1>Tentang Aplikasi Kami</h1>
+            <p class="lead">Solusi Lengkap untuk Transformasi Digital Bisnis Anda</p>
+        </div>
+    </div>
+
+    <main>
+        <section id="profil" class="py-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                        <div class="card shadow-sm">
+                            <div class="card-body p-5">
+                                <p class="lead text-muted">
+                                    Aplikasi Penjualan Barang ini adalah solusi lengkap untuk mengelola bisnis online
+                                    Anda.
+                                    Dirancang dengan antarmuka yang intuitif dan fitur-fitur canggih, aplikasi ini
+                                    memungkinkan Anda untuk:
+                                </p>
+
+                                <div class="features-list mt-4">
+                                    <div class="feature-item mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-shopping-cart text-primary"></i>
+                                            </div>
+                                            <div class="feature-content ml-3">
+                                                <h4>Menampilkan dan Mengelola Produk</h4>
+                                                <p>Tambahkan, edit, dan hapus produk dengan cepat dan efisien. Interface
+                                                    yang intuitif memudahkan pengelolaan katalog produk Anda.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-item mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-clipboard-check text-primary"></i>
+                                            </div>
+                                            <div class="feature-content ml-3">
+                                                <h4>Memproses Pesanan dengan Lancar</h4>
+                                                <p>Sistem manajemen pesanan yang efisien memungkinkan Anda untuk
+                                                    menerima, memproses, dan melacak pesanan dengan mudah.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-item mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-boxes text-primary"></i>
+                                            </div>
+                                            <div class="feature-content ml-3">
+                                                <h4>Pelacakan Inventaris Real-time</h4>
+                                                <p>Pantau stok barang Anda secara real-time dan terima notifikasi
+                                                    otomatis ketika stok menipis.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-item mb-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-chart-line text-primary"></i>
+                                            </div>
+                                            <div class="feature-content ml-3">
+                                                <h4>Analisis Kinerja Penjualan</h4>
+                                                <p>Dapatkan wawasan mendalam tentang performa bisnis Anda melalui
+                                                    laporan dan grafik yang komprehensif.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-center mt-5">
+                                    <p class="lead mb-4">
+                                        Cocok untuk berbagai skala bisnis, dari UMKM hingga perusahaan besar.
+                                    </p>
+                                    <a href="#" class="btn btn-custom">Mulai Sekarang</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer text-center mt-5">
+        <p class="mb-0">&copy; 2024 Shopping by Irwanto Sinaga. Hak Cipta Dilindungi.</p>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

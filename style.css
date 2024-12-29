@@ -1,0 +1,123 @@
+/* style.css */
+/* Reset dan base styles */
+body {
+    font-family: sans-serif;
+}
+
+/* Layout components */
+.container {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Sections */
+#index,
+#profil,
+#login,
+#transaksi {
+    padding: 50px 0;
+}
+
+/* Custom button */
+.btn-custom {
+    background-color: #e116d0;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #45a049;
+    color: white;
+}
+
+/* Login form styles */
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+/* Footer */
+.footer {
+    background-color: fuchsia;
+    border-radius: 3px;
+    padding: 15px 0;
+    margin-top: 2rem;
+    color: white;
+}
+
+/* Styling untuk halaman profil */
+.profile-header {
+    background: linear-gradient(135deg, #e116d0, #7f19ee);
+    padding: 120px 0 80px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+.profile-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #3B0764;
+}
+
+.profile-header .lead {
+    font-size: 1.2rem;
+    color: #3B0764;
+}
+
+.feature-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(225, 22, 208, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-icon i {
+    font-size: 1.5rem;
+    color: #e116d0;
+}
+
+.feature-content h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3B0764;
+    margin-bottom: 10px;
+}
+
+.feature-content p {
+    color: #666;
+    margin-bottom: 0;
+}
+
+.features-list {
+    margin-top: 40px;
+}
+
+.feature-item {
+    transition: all 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 2rem;
+    }
+
+    .profile-header .lead {
+        font-size: 1.1rem;
+    }
+
+    .feature-content h4 {
+        font-size: 1.1rem;
+    }
+}

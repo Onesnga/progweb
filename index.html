@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Penjualan Barang</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Style untuk navbar */
+        .navbar {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand img {
+            width: 60px;
+            height: auto;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav {
+            align-items: center;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            padding: 8px 15px !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #e116d0 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #e116d0;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        .nav-item.active .nav-link {
+            color: #e116d0 !important;
+        }
+
+        .nav-item.active .nav-link::after {
+            width: 70%;
+        }
+
+        /* Login Button Styling */
+        .btn-custom {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white !important;
+            border-radius: 25px;
+            padding: 8px 25px !important;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(225, 22, 208, 0.3);
+        }
+
+        /* Style untuk hero section */
+        .hero-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding-top: 160px;
+            padding-bottom: 100px;
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(225, 22, 208, 0.1), rgba(127, 25, 238, 0.1));
+            transform: rotate(-12deg);
+            z-index: 1;
+        }
+
+        .hero-header .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #2d1053;
+            text-shadow: none;
+            line-height: 1.2;
+        }
+
+        .hero-header .lead {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .hero-header .btn-light {
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white;
+            border: none;
+        }
+
+        .hero-header .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(225, 22, 208, 0.4);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-header h1,
+        .hero-header .lead,
+        .hero-header .btn-light {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .hero-header .lead {
+            animation-delay: 0.2s;
+        }
+
+        .hero-header .btn-light {
+            animation-delay: 0.4s;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            transition: transform 0.3s ease;
+            margin-bottom: 30px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            background-color: #e116d0;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -20px auto 15px;
+            font-weight: bold;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .benefits-section {
+            background-color: #f8f9fa;
+            padding: 50px 0;
+            margin-top: 50px;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: #e116d0;
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .hero-header {
+                padding-top: 130px;
+            }
+
+            .hero-header h1 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+
+            .hero-header .lead {
+                font-size: 1.1rem;
+            }
+        }
+
+
+        /* Styling untuk number badge */
+        .number-badge {
+            position: absolute;
+            top: -20px;
+            /* Sesuaikan nilai ini jika perlu */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+            z-index: 1;
+        }
+
+        /* Styling untuk cards */
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            overflow: visible;
+            margin-top: 25px;
+            /* Memberikan ruang untuk badge */
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/logo.png" alt="Logo" width="100" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Beranda <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="transaksi.html">Transaksi</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profil.html">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-custom px-4" href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="hero-header">
+            <div class="container text-center">
+                <h1>Selamat Datang di Aplikasi Penjualan Barang Shopping</h1>
+                <p class="lead">Solusi lengkap untuk mengelola bisnis online Anda dengan mudah dan efisien</p>
+                <a href="login.html" class="btn btn-light btn-lg mt-3">Mulai Sekarang</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="features py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Card 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 position-relative">
+                            <div class="number-badge">1</div>
+                            <div class="card-body text-center p-4">
+                                <img src="assets/images/registrasi.jpg" alt="Register" class="mb-4"
+                                    style="height: 150px;">
+                                <h3 class="card-title">Registrasi Akun</h3>
+                                <p class="card-text">Daftarkan diri Anda dengan mudah dan cepat. Isi form registrasi
+                                    dengan data yang valid untuk memulai.</p>
+                                <ul class="list-unstyled text-left">
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Proses Cepat</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Data Aman</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Verifikasi Instan</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 position-relative">
+                            <div class="number-badge">2</div>
+                            <div class="card-body text-center p-4">
+                                <img src="assets/images/tambah-barang.jpg" alt="Tambah Barang" class="mb-4"
+                                    style="height: 150px;">
+                                <h3 class="card-title">Tambah Barang</h3>
+                                <p class="card-text">Masukkan data barang yang ingin Anda jual dengan detail lengkap
+                                    untuk informasi yang akurat.</p>
+                                <ul class="list-unstyled text-left">
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Upload Foto</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Atur Stok</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Set Harga</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 position-relative">
+                            <div class="number-badge">3</div>
+                            <div class="card-body text-center p-4">
+                                <img src="assets/images/kelola-transaksi.png" alt="Kelola Transaksi" class="mb-4"
+                                    style="height: 150px;">
+                                <h3 class="card-title">Kelola Transaksi</h3>
+                                <p class="card-text">Pantau dan proses semua transaksi penjualan dengan sistem yang
+                                    terintegrasi.</p>
+                                <ul class="list-unstyled text-left">
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Tracking Realtime</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Laporan Otomatis</li>
+                                    <li><i class="fas fa-check-circle text-success mr-2"></i>Notifikasi Update</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center mb-5">Keunggulan Aplikasi Kami</h2>
+                <div class="row text-center">
+                    <div class="col-md-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h5>Proses Cepat</h5>
+                        <p>Transaksi instan dan response time yang cepat</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5>Keamanan Terjamin</h5>
+                        <p>Sistem keamanan berlapis untuk data Anda</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h5>Laporan Real-time</h5>
+                        <p>Monitoring penjualan secara real-time</p>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5>Support 24/7</h5>
+                        <p>Dukungan teknis setiap saat</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer text-center mt-5">
+        <p class="mb-0">&copy; 2024 Shopping by Irwanto Sinaga. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

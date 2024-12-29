@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaksi - Aplikasi Penjualan Barang</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 100px;
+        }
+
+        /* Navbar styling dari halaman Beranda */
+        .navbar {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 1030;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            width: auto;
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item {
+            margin: 0 5px;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            padding: 8px 15px !important;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #e116d0 !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #e116d0;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 70%;
+        }
+
+        .nav-item.active .nav-link {
+            color: #e116d0 !important;
+        }
+
+        .nav-item.active .nav-link::after {
+            width: 70%;
+        }
+
+        /* Hero Header styling */
+        .hero-header {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            padding-top: 120px;
+            padding-bottom: 100px;
+            margin-top: -100px;
+            margin-bottom: 50px;
+            position: relative;
+            color: white;
+        }
+
+        .hero-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: white;
+            text-shadow: none;
+            line-height: 1.2;
+        }
+
+        .hero-header .lead {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white !important;
+            border-radius: 25px;
+            padding: 8px 25px !important;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(225, 22, 208, 0.3);
+        }
+
+        /* Form dan Table styling */
+        .card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .form-control:focus {
+            border-color: #e116d0;
+            box-shadow: 0 0 0 0.2rem rgba(225, 22, 208, 0.25);
+        }
+
+        .table thead th {
+            border-top: none;
+            border-bottom: 2px solid #e116d0;
+        }
+
+        /* Styling khusus untuk header halaman transaksi */
+        .page-header.transaction-header {
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            padding: 80px 0 60px;
+            margin-top: 80px;
+            margin-bottom: 50px;
+            position: relative;
+            color: white;
+        }
+
+        .transaction-header h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #3B0764;
+            text-shadow: none;
+            line-height: 1.2;
+        }
+
+        .transaction-header .lead {
+            font-size: 1.2rem;
+            color: #3B0764;
+        }
+
+        /* Tambahkan style khusus untuk halaman transaksi */
+        .transaksi-page {
+            padding-top: 120px;
+        }
+
+        .transaksi-page h2 {
+            margin-bottom: 30px;
+        }
+
+        .form-transaksi {
+            margin-top: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 991px) {
+            .navbar {
+                padding: 10px 0;
+            }
+
+            .hero-header {
+                padding-top: 130px;
+            }
+
+            .hero-header h1 {
+                font-size: 2.3rem;
+            }
+
+            .page-header.transaction-header {
+                padding: 70px 0 50px;
+                margin-top: 70px;
+            }
+
+            .transaction-header h1 {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 2rem;
+            }
+
+            .hero-header .lead {
+                font-size: 1.1rem;
+            }
+
+            .transaction-header h1 {
+                font-size: 2rem;
+            }
+
+            .transaction-header .lead {
+                font-size: 1.1rem;
+            }
+        }
+
+        .transaction-header .btn-light {
+            font-weight: 600;
+            padding: 15px 40px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #e116d0, #7f19ee);
+            color: white;
+            border: none;
+        }
+
+        .badge {
+            padding: 8px 12px;
+            font-weight: 500;
+            font-size: 12px;
+            border-radius: 20px;
+        }
+
+        .badge-success {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .badge-warning {
+            background-color: #ffc107;
+            color: #000;
+        }
+
+        .badge-info {
+            background-color: #17a2b8;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/logo.png" alt="Logo" width="100" height="100">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Beranda</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="transaksi.html">Transaksi <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profil.html">Profil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-custom px-4" href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-header transaction-header">
+            <div class="container text-center">
+                <h1>Kelola Transaksi Anda</h1>
+                <p class="lead">Catat, Pantau, dan Analisis Setiap Transaksi dengan Mudah</p>
+                <a href="#form-transaksi" class="btn btn-light btn-lg mt-3">Mulai Transaksi</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-body p-5">
+                                <div class="text-center mb-4">
+                                    <div class="transaction-icon">
+                                        <i class="fas fa-cash-register"></i>
+                                    </div>
+                                    <h2>Form Transaksi Baru</h2>
+                                </div>
+                                <form>
+                                    <div class="form-group">
+                                        <label>Nama Transaksi</label>
+                                        <input type="text" class="form-control" placeholder="Masukkan nama transaksi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Jumlah</label>
+                                        <input type="number" class="form-control" placeholder="Nominal transaksi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Kategori</label>
+                                        <select class="form-control">
+                                            <option>Pilih Kategori</option>
+                                            <option>Penjualan</option>
+                                            <option>Pembelian</option>
+                                            <option>Lainnya</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-custom btn-block">
+                                        <i class="fas fa-save mr-2"></i>Simpan Transaksi
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-body p-5">
+                                <h2 class="text-center mb-4">Riwayat Transaksi</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th>Nama Transaksi</th>
+                                                <th>Jumlah</th>
+                                                <th>Kategori</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Penjualan Produk A</td>
+                                                <td>Rp 500.000</td>
+                                                <td><span class="badge badge-success">Penjualan</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom mr-2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Pembelian Stok Barang</td>
+                                                <td>Rp 1.200.000</td>
+                                                <td><span class="badge badge-warning">Pembelian</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom mr-2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Penjualan Produk B</td>
+                                                <td>Rp 750.000</td>
+                                                <td><span class="badge badge-success">Penjualan</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom mr-2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Biaya Operasional</td>
+                                                <td>Rp 300.000</td>
+                                                <td><span class="badge badge-info">Lainnya</span></td>
+                                                <td>
+                                                    <button class="btn btn-sm btn-custom mr-2">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer text-center mt-5">
+        <p class="mb-0">&copy; 2024 Shopping by Irwanto Sinaga. Hak Cipta Dilindungi.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
