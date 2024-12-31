@@ -89,7 +89,6 @@
             position: relative;
         }
 
-        
         .hero-section h1 {
             color: #3B0764;
             font-size: 2.8rem;
@@ -103,6 +102,23 @@
             color: #3B0764;
             font-size: 1.2rem;
             margin-bottom: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-section {
+            flex: 1;
         }
 
         /* Button Custom Style */
@@ -146,11 +162,11 @@
 
         /* Footer */
         .footer {
-            padding: 20px 0;
-            background-color: #f8f9fa;
-            position: relative;
-            bottom: 0;
+            background-color: #e116d0 !important;
+            color: white !important;
+            padding: 15px 0;
             width: 100%;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -180,7 +196,6 @@
                         <li class="nav-item">
                             <a class="nav-link btn btn-custom px-4" href="login.html">Masuk</a>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
@@ -200,7 +215,7 @@
     </header>
 
     <main>
-        <section class="vh-100">
+        <section class="login-section py-5">
             <div class="container py-5 h-100">
                 <div class="row d-flex align-items-center justify-content-center h-100">
                     <div class="col-md-8 col-lg-7 col-xl-6">
@@ -246,14 +261,24 @@
         </section>
     </main>
 
-    <footer class="footer text-center mt-5">
+    <footer class="footer text-center">
         <p class="mb-0">&copy; 2024 Shopping by Irwanto Sinaga. Hak Cipta Dilindungi.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+    </script>
+
 </body>
 
 </html>
